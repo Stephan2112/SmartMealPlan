@@ -1,11 +1,12 @@
 import { useCallback, useMemo } from 'react'
-import { supabase } from '@/shared/api/supabase.ts'
+import { supabase } from '@/shared/api/supabase'
 import { useSupabase } from '../lib/supabase-context'
 
 export function useAuth() {
   const { session, loading } = useSupabase()
 
   const signOut = useCallback(async () => {
+    if (!supabase) return
     await supabase.auth.signOut()
   }, [])
 

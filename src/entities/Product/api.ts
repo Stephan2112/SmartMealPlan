@@ -1,15 +1,19 @@
-
-import { supabase } from '@/lib/supabase.ts';
+import { supabase } from '@/shared/api/supabase'
 import { Product } from './types'
 
 export async function fetchProducts(): Promise<Product[]> {
-  if (!supabase) return []
-  const { data, error } = await supabase.from('products').select('*')
-  if (error) {
-    console.warn('Supabase error, falling back to mock data', error.message)
+  if (!supabase) return getMockProducts()
+  try {
+    const { data, error } = await supabase.from('products').select('*')
+    if (error) {
+      console.warn('Supabase error, falling back to mock data', error.message)
+      return getMockProducts()
+    }
+    return (data as Product[]) ?? getMockProducts()
+  } catch (error) {
+    console.warn('Supabase request failed, using mock data instead', error)
     return getMockProducts()
   }
-  return (data as Product[]) ?? getMockProducts()
 }
 
 export function getMockProducts(): Product[] {

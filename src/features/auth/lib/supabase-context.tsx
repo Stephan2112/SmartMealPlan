@@ -31,14 +31,17 @@ export function SupabaseProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    // Явно указываем тип для data из getSession()
+    if (!supabase) {
+      setLoading(false)
+      return undefined
+    }
+
     supabase.auth
       .getSession()
       .then(({ data }: { data: { session: Session | null } }) => setSession(data.session))
       .finally(() => setLoading(false))
 
-    // Явно указываем тип для data из onAuthStateChange
-    const { data }: { data: { subscription: { unsubscribe: () => void } } } = 
+    const { data }: { data: { subscription: { unsubscribe: () => void } } } =
       supabase.auth.onAuthStateChange((_event: AuthChangeEvent, newSession: Session | null) => {
         setSession(newSession)
         setLoading(false)
