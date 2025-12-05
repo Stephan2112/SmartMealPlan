@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-
 # SmartMealPlan
 
 SmartMealPlan — React/Vite приложение для автоматизированного подбора и заказа продуктов под цели КБЖУ. Проект использует Supabase для аутентификации и хранения данных, React Query и Zustand для работы с состоянием и Tailwind CSS для стилизации.
@@ -16,7 +14,4 @@ SmartMealPlan — React/Vite приложение для автоматизир�
 3. Запустите проект: `npm run dev`.
 
 ## Стек
-React 18, TypeScript, Vite, Tailwind CSS, shadcn/ui основы, Zustand, React Query, React Hook Form + Zod, Supabase JS Client.
-=======
-# SmartMealPlan
->>>>>>> eaf5abc2219a541de2f36a870acc1ae4a9425365
+React 18, TypeScript, Vite, Tailwind CSS, shadcn/ui основы, Zustand, React Query, React Hook Form + Zod, Supabase JS Client

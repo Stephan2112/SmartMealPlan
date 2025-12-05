@@ -6,6 +6,17 @@ import { Product } from '@/entities/Product/types'
 import { DEFAULT_GOALS } from '@/shared/lib/constants'
 import { selectDailyProducts, RemainingNutrients, HistoryItem } from '../algorithms/selection'
 
+const isRemainingEqual = (a: RemainingNutrients | null, b: RemainingNutrients) => {
+  if (!a) return false
+
+  return (
+    a.calories === b.calories &&
+    a.protein === b.protein &&
+    a.fat === b.fat &&
+    a.carbs === b.carbs
+  )
+}
+
 interface SelectionState {
   products: Product[]
   history: HistoryItem[]
@@ -48,8 +59,10 @@ export function useDailySelection(userGoals: RemainingNutrients = DEFAULT_GOALS)
   )
 
   useEffect(() => {
-    setRemaining(remainingTotal)
-  }, [remainingTotal, setRemaining])
+    if (!remaining || !isRemainingEqual(remaining, remainingTotal)) {
+      setRemaining(remainingTotal)
+    }
+  }, [remaining, remainingTotal, setRemaining])
 
   const toggleLike = (productId: string) => {
     const exists = history.find((item) => item.product_id === productId && item.action === 'liked')
