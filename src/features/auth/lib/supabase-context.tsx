@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react'
-import type { Session } from '@supabase/supabase-js'
+import type { Session, AuthChangeEvent } from '@supabase/supabase-js'
 import { supabase } from '@/shared/api/supabase'
 
 export interface Profile {
@@ -31,15 +31,18 @@ export function SupabaseProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    // Явно указываем тип для data из getSession()
     supabase.auth
       .getSession()
-      .then(({ data }) => setSession(data.session))
+      .then(({ data }: { data: { session: Session | null } }) => setSession(data.session))
       .finally(() => setLoading(false))
 
-    const { data } = supabase.auth.onAuthStateChange((_event, newSession) => {
-      setSession(newSession)
-      setLoading(false)
-    })
+    // Явно указываем тип для data из onAuthStateChange
+    const { data }: { data: { subscription: { unsubscribe: () => void } } } = 
+      supabase.auth.onAuthStateChange((_event: AuthChangeEvent, newSession: Session | null) => {
+        setSession(newSession)
+        setLoading(false)
+      })
 
     return () => {
       data.subscription.unsubscribe()

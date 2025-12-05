@@ -5,4 +5,4 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export const formatNutrient = (value: number, unit = 'g') => `${Math.round(value)}${unit}
+export const formatNutrient = (value: number, unit = 'g') => `${Math.round(value)}${unit}`

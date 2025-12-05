@@ -1,4 +1,5 @@
-import { supabase } from '@/shared/api/supabase'
+
+import { supabase } from '@/lib/supabase.ts';
 import { Product } from './types'
 
 export async function fetchProducts(): Promise<Product[]> {

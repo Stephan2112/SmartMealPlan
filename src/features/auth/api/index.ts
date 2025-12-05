@@ -1,4 +1,4 @@
-import { supabase } from '@/shared/api/supabase'
+import { supabase } from '@/shared/api/supabase.ts'
 
 export async function signInWithEmail(email: string, password: string) {
   const { error } = await supabase.auth.signInWithPassword({ email, password })

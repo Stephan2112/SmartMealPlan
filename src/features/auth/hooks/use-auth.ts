@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from 'react'
-import { supabase } from '@/shared/api/supabase'
+import { supabase } from '@/shared/api/supabase.ts'
 import { useSupabase } from '../lib/supabase-context'
 
 export function useAuth() {

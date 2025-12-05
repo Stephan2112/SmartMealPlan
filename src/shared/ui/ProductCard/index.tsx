@@ -1,3 +1,4 @@
+import type { SyntheticEvent } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/ui/Card'
 import { Button } from '@/shared/ui/Button'
 import { formatNutrient } from '@/shared/lib/utils'
@@ -17,7 +18,7 @@ export const ProductCard = ({ product, onReplace }: ProductCardProps) => {
             src={product.image_url}
             alt={product.name}
             className="h-20 w-20 rounded-xl object-cover"
-            onError={(event) => {
+            onError={(event: SyntheticEvent<HTMLImageElement, Event>) => {
               const target = event.target as HTMLImageElement
               target.src = 'https://placehold.co/160x160?text=Food'
             }}
