@@ -14,7 +14,7 @@
     "strict": true,
     "allowSyntheticDefaultImports": true,
     "types": ["node"],
-    "baseUrl": "./",
+    "baseUrl": "./ https://aikshmtrgsrhdfzevcql.supabase.co",
     "paths": {
       "@/*": ["src/*"]
     }
