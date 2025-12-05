@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 # SmartMealPlan
 
@@ -16,3 +17,6 @@ SmartMealPlan — React/Vite приложение для автоматизир�
 
 ## Стек
 React 18, TypeScript, Vite, Tailwind CSS, shadcn/ui основы, Zustand, React Query, React Hook Form + Zod, Supabase JS Client.
+=======
+# SmartMealPlan
+>>>>>>> eaf5abc2219a541de2f36a870acc1ae4a9425365
