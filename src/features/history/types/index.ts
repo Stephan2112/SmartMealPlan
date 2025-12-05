@@ -1,0 +1,1 @@
+export type UserHistoryAction = 'viewed' | 'ordered' | 'liked'
